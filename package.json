@@ -9,9 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "memer.ts": "^4.1.3",
+    "canvas": "^2.11.2",
     "next": "14.2.5",
-    "node-fetch": "^3.3.2",
     "react": "^18",
     "react-dom": "^18"
   },

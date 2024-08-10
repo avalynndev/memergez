@@ -1,27 +1,51 @@
-import fetch from "node-fetch";
+export function wrapText(
+  ctx: any,
+  text: string,
+  x: number,
+  y: number,
+  maxWidth: number,
+  lineHeight: number,
+  maxHeight: number = Infinity,
+  align: "center" | "start" | "end" = "start"
+) {
+  const words = text.split(" ");
+  let line = "";
+  const lines: string[] = [];
+  let totalHeight = 0;
 
-class Meme {
-  private base: string;
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + " ";
+    const metrics = ctx.measureText(testLine);
+    const testWidth = metrics.width;
 
-  constructor() {
-    this.base = "https://memer-api-js.vercel.app/api/v4";
-  }
-
-  async vr(text: string) {
-    if (!text) throw new SyntaxError("You are missing the Text");
-
-    try {
-      const response = await fetch(`${this.base}/vr?text=${encodeURI(text)}`);
-      const arrayBuffer = await response.arrayBuffer();
-      const buffer = Buffer.from(new Uint8Array(arrayBuffer)).toString(
-        "base64"
-      );
-      return buffer;
-    } catch (error) {
-      console.error(error);
-      throw error;
+    if (testWidth > maxWidth && n > 0) {
+      lines.push(line.trim());
+      line = words[n] + " ";
+      totalHeight += lineHeight;
+      if (totalHeight + lineHeight > maxHeight) {
+        break;
+      }
+    } else {
+      line = testLine;
     }
   }
-}
+  lines.push(line.trim());
 
-export default Meme;
+  totalHeight = 0;
+  for (const element of lines) {
+    const lineWidth = ctx.measureText(element).width;
+    let xPos = x;
+
+    if (align === "center") {
+      xPos = x + (maxWidth - lineWidth) / 2;
+    } else if (align === "end") {
+      xPos = x + maxWidth - lineWidth;
+    }
+
+    if (totalHeight + lineHeight > maxHeight) {
+      break;
+    }
+    ctx.fillText(element, xPos, y + totalHeight);
+    totalHeight += lineHeight;
+  }
+}
