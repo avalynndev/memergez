@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "canvas": "^2.11.2",
+    "memer.ts": "^4.2.5",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18"
