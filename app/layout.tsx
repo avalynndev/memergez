@@ -20,10 +20,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Memerz",
-    template: `%s - Memerz`,
+    default: "memergez",
+    template: `%s - memergez`,
   },
-  description: "A site where you can generate memes with ease. created using shadcn-ui",
+  description:
+    "A site where you can generate memes with ease. created using shadcn-ui",
 };
 
 export default function RootLayout({
