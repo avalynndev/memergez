@@ -72,11 +72,10 @@ const MemePage = () => {
         />
 
         <Select
-          className="w-full p-3 rounded-lg"
           value={option}
           onValueChange={(value: any) => setOption(value)}
         >
-          <SelectTrigger className="w-full">
+          <SelectTrigger className="w-full  p-3 rounded-lg">
             <SelectValue placeholder="Select option" />
           </SelectTrigger>
           <SelectContent>
