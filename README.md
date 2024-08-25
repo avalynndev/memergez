@@ -11,6 +11,11 @@ Memergez
   <a href="#"><img src="https://img.shields.io/badge/netlify-%23083d4f.svg?style=for-the-badge&logo=netlify"/></a>
 </p>
 </p>
+<p align="center">
+  <a href="https://memer-ts.vercel.app" target="_blank">
+    <img src="https://github.com/avalynndev/memer.ts-docs/blob/main/app/favicon.ico?raw=true" alt="Logo" width="50"/>
+  </a>
+</p>
 
 ![alt text](image.png)
 
@@ -24,11 +29,7 @@ Includes more than 70 Meme commands. Just enter the Avatar/Text and get a meme i
 <div style="text-align: left;">
   <img src="https://api.microlink.io/?url=https://memergez.vercel.app&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=dark&overlay.background=linear-gradient%28225deg%2C+%23FF057C+0%25%2C+%238D0B93+50%25%2C+%23321575+100%25%29" alt="Home Page" style="max-width: 70%;" >
 </div>
-<p align="center">
-  <a href="https://memer-ts.vercel.app" target="_blank">
-    <img src="https://github.com/avalynndev/memer.ts-docs/blob/main/app/favicon.ico?raw=true" alt="Logo" width="50"/>
-  </a>
-</p>
+
 
 ## Installation 🛠️
 
