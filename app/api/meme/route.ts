@@ -16,8 +16,6 @@ export async function POST(req: Request) {
       base64Image = await memer.vr(text, false);
     } else if (option === "trash") {
       base64Image = await memer.trash(text, false);
-    } else if (option === "cry") {
-      base64Image = await memer.cry(text, false);
     } else if (option === "dab") {
       base64Image = await memer.dab(text, false);
     } else if (option === "disability") {
