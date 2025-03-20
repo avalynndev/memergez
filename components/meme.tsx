@@ -104,7 +104,7 @@ const MemeGenerator: React.FC = () => {
                 <Card className="pt-4">
                   <CardContent>
                     <Image
-                      className="h-2/4 w-full object-cover rounded-xl transition-all aspect-[3/4]"
+                      className="h-2/4 w-full object-cover rounded-xl transition-all aspect-3/4"
                       src={item.url}
                       width={160}
                       height={160}
@@ -145,7 +145,7 @@ const MemeGenerator: React.FC = () => {
                 {generatedMemes[item.id] && (
                   <div className="w-full max-w-md mt-6">
                     <img
-                      className="h-46 object-cover rounded-xl transition-all aspect-[3/4]"
+                      className="h-46 object-cover rounded-xl transition-all aspect-3/4"
                       width={160}
                       height={160}
                       src={generatedMemes[item.id]!}
