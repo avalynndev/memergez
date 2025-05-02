@@ -11,17 +11,12 @@ Memergez
   <a href="#"><img src="https://img.shields.io/badge/netlify-%23083d4f.svg?style=for-the-badge&logo=netlify"/></a>
 </p>
 </p>
-<p align="center">
-  <a href="https://memer-ts.vercel.app" target="_blank">
-    <img src="https://github.com/avalynndev/memer.ts-docs/blob/main/app/favicon.ico?raw=true" alt="Logo" width="50"/>
-  </a>
-</p>
 
 ![alt text](image.png)
 
 ## What is Memergez?
 
-The one stop for generating memes with ease! Explore **[memergez.netlify.app](https://memergez.vercel.app)**. Created using `memer.ts`.
+The one stop for generating memes with ease! Explore **[memergez.netlify.app](https://memergez.vercel.app)**. Created using `imgflip`.
 Includes more than 70 Meme commands. Just enter the Avatar/Text and get a meme in seconds.
 
 ## Images
