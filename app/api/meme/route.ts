@@ -13,9 +13,9 @@ export async function POST(req: Request) {
 
     const memer = new Memer();
     let base64Image;
-    
-    registerFont(path.resolve(process.cwd(), "public/fonts/impact.ttf"), {
-      family: "Impact",
+
+    registerFont(path.resolve(process.cwd(), "public/fonts/playwrite.ttf"), {
+      family: "Playwrite",
     });
 
     if (option === "vr") {
