@@ -13,6 +13,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 interface Meme {
   id: string;
@@ -67,8 +69,8 @@ const MemeGenerator: React.FC = () => {
 
     const formData = new URLSearchParams();
     formData.append("template_id", memeId);
-    formData.append("username", "clutchgodfrfr"); // replace with your Imgflip username
-    formData.append("password", "$KzdWSUV-z6SUqD"); // replace with your Imgflip password
+    formData.append("username", "clutchgodfrfr");
+    formData.append("password", "$KzdWSUV-z6SUqD");
 
     inputs[memeId].forEach((text, index) => {
       formData.append(`boxes[${index}][text]`, text);
@@ -100,18 +102,20 @@ const MemeGenerator: React.FC = () => {
         {memes.map((item) => (
           <Annu key={item.id}>
             <AnnuTrigger asChild>
-              <div>
-                <Card className="pt-4">
-                  <CardContent>
-                    <Image
-                      className="h-2/4 w-full object-cover rounded-xl transition-all aspect-3/4"
-                      src={item.url}
-                      width={160}
-                      height={160}
-                      alt="Meme Poster"
-                    />
-                  </CardContent>
-                </Card>
+              <div className="relative group cursor-pointer">
+                <div className="aspect-[3/4] bg-muted text-muted relative w-full h-auto min-h-[240px] max-h-[400px] flex items-center justify-center overflow-hidden rounded-lg border shadow-sm">
+                  <Image
+                    fill
+                    className="object-cover"
+                    loading="lazy"
+                    sizes="100%"
+                    alt={item.name}
+                    src={item.url}
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-60 transition-opacity flex items-center justify-center text-white text-center text-sm px-2">
+                    <span className="font-semibold">{item.name}</span>
+                  </div>
+                </div>
               </div>
             </AnnuTrigger>
             <AnnuContent>
@@ -137,7 +141,7 @@ const MemeGenerator: React.FC = () => {
                   ))}
                 </div>
                 <Button
-                  className="pb-2 px-4 rounded"
+                  className="pb-2 px-4 rounded-xl"
                   onClick={() => handleSubmit(item.id)}
                 >
                   Generate Meme
@@ -145,12 +149,24 @@ const MemeGenerator: React.FC = () => {
                 {generatedMemes[item.id] && (
                   <div className="w-full max-w-md mt-6">
                     <img
-                      className="h-46 object-cover rounded-xl transition-all aspect-3/4"
-                      width={160}
-                      height={160}
+                      className="h-46 object-cover rounded-xl transition-all"
+                      width={generatedMemes[item.width]!}
+                      height={generatedMemes[item.height]!}
                       src={generatedMemes[item.id]!}
                       alt="Generated Meme"
+                      id={`meme-${item.id}`}
                     />
+                    <Link
+                      href={generatedMemes[item.id] || ""}
+                      className="mt-2 inline-block"
+                    >
+                      <Button
+                        variant="outline"
+                        className="pb-2 px-4 rounded-xl"
+                      >
+                        Download Meme
+                      </Button>
+                    </Link>
                   </div>
                 )}
               </AnnuBody>

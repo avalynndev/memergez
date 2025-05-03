@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
+import path from "path";
 import { Memer } from "memer.ts-canvas";
+import { registerFont } from "canvas";
 
 export async function POST(req: Request) {
   try {
@@ -11,6 +13,10 @@ export async function POST(req: Request) {
 
     const memer = new Memer();
     let base64Image;
+    
+    registerFont(path.resolve(process.cwd(), "public/fonts/impact.ttf"), {
+      family: "Impact",
+    });
 
     if (option === "vr") {
       base64Image = await memer.vr(text, false);

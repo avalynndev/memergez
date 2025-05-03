@@ -12,10 +12,9 @@ import {
 } from "@/components/ui/select";
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowRightIcon } from "@radix-ui/react-icons";
 
 const MemePage = () => {
-  const [text, setText] = useState("");
+  const [text, setText  ] = useState("");
   const [meme, setMeme] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -58,22 +57,25 @@ const MemePage = () => {
     <div className="flex flex-col items-center justify-center min-h-screen p-6 space-y-8">
       <main className="flex h-screen items-center justify-center">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
-          <h1 className="text-5xl md:text-6xl">Generate Meme</h1>
+          <h1 className="font-satoshi text-[40px] font-black leading-[1.15] tracking-tight sm:text-5xl md:text-6xl md:leading-[1.15]">
+            Generate a meme using
+            Memer.ts
+          </h1>
           <div className="flex gap-2">
-            <ThemeToggle />
-
             <Link
-              href={"/meme"}
-              target="_blank"
-              className={cn(buttonVariants({ variant: "ghost" }))}
+              href={"/"}
+              className={cn(
+                buttonVariants({ variant: "outline" }),
+                "rounded-xl"
+              )}
             >
-              <span>More Memes</span>
-              <ArrowRightIcon className="ml-2 h-4 w-4" />
+              <span>home</span>
             </Link>
+            <ThemeToggle />
           </div>
           <form
             onSubmit={handleSubmit}
-            className="w-full max-w-md border rounded-lg shadow-lg p-6 space-y-4"
+            className="w-full max-w-md border rounded-xl shadow-lg p-6 space-y-4"
           >
             <Input
               type="text"
@@ -81,14 +83,14 @@ const MemePage = () => {
               onChange={(e) => setText(e.target.value)}
               placeholder="Enter your text/avatar URL"
               required
-              className="w-full p-3 rounded-lg"
+              className="w-full p-3 rounded-xl"
             />
 
             <Select
               value={option}
               onValueChange={(value: any) => setOption(value)}
             >
-              <SelectTrigger className="w-full  p-3 rounded-lg">
+              <SelectTrigger className="w-full  p-3 rounded-xl">
                 <SelectValue placeholder="Select option" />
               </SelectTrigger>
               <SelectContent>
@@ -113,7 +115,7 @@ const MemePage = () => {
             <Button
               type="submit"
               disabled={loading}
-              className={`w-full py-3 px-4 rounded-lg font-semibold ${
+              className={`w-full py-3 px-4 rounded-xl font-semibold ${
                 loading ? "cursor-not-allowed" : ""
               }`}
             >
