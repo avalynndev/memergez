@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "@/lib/utils";
+import { cn, isValidImageUrl } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,19 +11,24 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { MemeOptions } from "@/lib/constants/MemeOptions";
 
 const MemePage = () => {
   const [text, setText  ] = useState("");
   const [meme, setMeme] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [alert, setAlert] = useState<{message: string, type: "passable" | "serious"} | null>(null);
   const [option, setOption] = useState("trash");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (alert && alert.type === "serious") return;
+
     setLoading(true);
     setError(null);
+    setAlert(null);
 
     try {
       const response = await fetch(`/api/meme`, {
@@ -52,6 +57,52 @@ const MemePage = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (!option || !text) {
+      setError(null);
+      setAlert(null);
+      return;
+    };
+
+    const selectedOption = MemeOptions.find((m) => m.value === option);
+    if (!selectedOption) {
+      setError("Invalid meme type selected");
+      return;
+    }
+
+    const is_Text_A_Valid_URL = isValidImageUrl(text);
+
+    if (selectedOption.type === "image" && !is_Text_A_Valid_URL) {
+      setAlert({
+        message: "Please enter a valid image URL for this meme type",
+        type: "serious"
+      });
+      return;
+    }
+
+    if (selectedOption.type === "text" && is_Text_A_Valid_URL) {
+      setAlert({
+        message: "Please enter text instead of an image URL for this meme type",
+        type: "passable"
+      });
+      return;
+    }
+
+    setAlert(null);
+    setError(null);
+  }, [option, text, isValidImageUrl, MemeOptions]);
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError(null);
+      }, 5000);
+
+      // Clean up the timer when component unmounts or error changes
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6 space-y-8">
@@ -94,36 +145,25 @@ const MemePage = () => {
                 <SelectValue placeholder="Select option" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="trash">Trash</SelectItem>
-                <SelectItem value="vr">VR</SelectItem>
-                <SelectItem value="dab">Dab</SelectItem>
-                <SelectItem value="disability">Disability</SelectItem>
-                <SelectItem value="door">Door</SelectItem>
-                <SelectItem value="egg">Egg</SelectItem>
-                <SelectItem value="excuseme">Excuse Me</SelectItem>
-                <SelectItem value="failure">Failure</SelectItem>
-                <SelectItem value="hitler">Hitler</SelectItem>
-                <SelectItem value="humanity">Humanity</SelectItem>
-                <SelectItem value="idelete">Delete</SelectItem>
-                <SelectItem value="jail">Jail</SelectItem>
-                <SelectItem value="roblox">Roblox</SelectItem>
-                <SelectItem value="satan">Satan</SelectItem>
-                <SelectItem value="stonks">Stonks</SelectItem>
+                {MemeOptions.map((option)=>(
+                  <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
 
             <Button
               type="submit"
-              disabled={loading}
+              disabled={(loading || (!!alert && alert.type === "serious"))}
               className={`w-full py-3 px-4 rounded-xl font-semibold ${
-                loading ? "cursor-not-allowed" : ""
+                (loading || (!!alert && alert.type === "serious")) ? "cursor-not-allowed" : "cursor-pointer active:scale-[0.98] transition-all duration-[0.2s]"
               }`}
             >
-              {loading ? "Generating..." : "Generate Meme"}
+              {loading ? "Generating..." : alert && alert.type === "serious" ? "Fix Error" : "Generate Meme"}
             </Button>
           </form>
 
           {error && <p className="text-center text-red-500">{error}</p>}
+          {alert && <p className="text-center text-orange-500">{alert.message}</p>}
 
           {meme && (
             <div className="w-full max-w-md mt-6">
