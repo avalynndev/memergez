@@ -1,5 +1,5 @@
 <h1 align="center">
-<a href="https://memergez.netlify.app">
+<a href="https://memergez.vercel.app">
 Memergez
 </a>
 </h1>
@@ -8,7 +8,7 @@ Memergez
   <a href="#"><img src="https://img.shields.io/badge/typescript-%23007acc.svg?style=for-the-badge&logo=typescript&logoColor=%23ffffff"/></a>
   <a href="#"><img src="https://img.shields.io/badge/shadcn/UI-%23ffffff.svg?style=for-the-badge&logo=shadcnui&logoColor=black"/></a>
   <a href="#"><img src="https://img.shields.io/badge/nextjs-%2320232a.svg?style=for-the-badge&logo=nextdotjs&logoColor=white"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/netlify-%23083d4f.svg?style=for-the-badge&logo=netlify"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/vercel-%23083d4f.svg?style=for-the-badge&logo=vercel"/></a>
 </p>
 </p>
 
@@ -16,7 +16,7 @@ Memergez
 
 ## What is Memergez?
 
-The one stop for generating memes with ease! Explore **[memergez.netlify.app](https://memergez.vercel.app)**. Created using `imgflip`.
+The one stop for generating memes with ease! Explore **[memergez.vercel.app](https://memergez.vercel.app)**. Created using `imgflip`.
 Includes more than 70 Meme commands. Just enter the Avatar/Text and get a meme in seconds.
 
 ## Images
