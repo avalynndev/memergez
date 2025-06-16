@@ -25,7 +25,7 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.8",
+    "@tailwindcss/postcss": "^4.1.10",
     "@types/node": "^22",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.3",
